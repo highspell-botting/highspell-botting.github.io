@@ -62,6 +62,54 @@ This project is open source. It can be downloaded, forked, cloned, and republish
 
 Let this be a mirror—not a weapon.
 
+---
+
+# 🤝 Contribution Guidelines
+
+Thank you for your interest in contributing to HighSpell Botting. This project thrives on disciplined transparency.
+
+## 📜 Guiding Philosophy
+
+This is a project of technical clarity—not operational assistance. We document, interpret, and expose—**not hand-hold** or distribute exploits.
+
+All contributions must uphold the **intent & ethos** outlined [here](#-intent--ethos). That means keeping the project educational, non-prescriptive, and decentralized. If you’re here to help others learn, build, and think—welcome.
+
+## ✅ What’s Encouraged
+
+- Documenting obfuscated or hidden mechanics  
+- Technical breakdowns of the HighSpell client  
+- Modular explanations of automation principles  
+- Code snippets that demonstrate systems—not direct solutions  
+- Discourse on ethical, legal, and architectural implications  
+
+## 🚫 What’s Discouraged
+
+- One-click bot scripts or automation packages   
+- Direct tutorials on gold-farming, PvP cheating, or monetized exploits  
+- Anything that prioritizes abuse or evasion over understanding  
+
+## 🧠 Tone & Content
+
+Write for depth. Speak in frameworks and systems. Offer insight—not thoughtless instructions.  
+Every contribution should invite others to think critically and dig further, not simply copy-and-paste.
+
+## 📖 Legal & Ethical Considerations
+
+This repository operates under fair use and academic interest. By contributing, you agree not to:
+- Use this project to promote illegal activity  
+- Misrepresent findings as undiscovered vulnerabilities  
+- Harass, impersonate, or target specific community members  
+
+You retain your intellectual property—but this project is open source. All contributions may be modified, published, and redistributed under the same license and ethos.
+
+---
+
+## 🔄 TL;DR
+
+Be precise. Be curious. Be thoughtful.  
+HighSpell Botting is a mirror, not a shortcut. Build responsibly.
+
+
 
 _Ready to begin? Use the navigation menu to explore._
 
