@@ -1,34 +1,62 @@
+/* Reset and base styling */
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #1e1e2f;
-  color: #ffffff;
   margin: 0;
   padding: 0;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  background-color: #0f0f0f;
+  color: #e0e0e0;
+  line-height: 1.6;
 }
 
+a {
+  color: #00b4d8;
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+}
+a:hover {
+  color: #90e0ef;
+}
+
+/* Container layout */
 .container {
-  max-width: 800px;
-  margin: 80px auto;
-  padding: 20px;
-  background-color: #2e2e40;
+  max-width: 750px;
+  margin: 5rem auto;
+  padding: 2rem;
+  background-color: #1a1a1a;
   border-radius: 12px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+  box-shadow: 0 0 8px rgba(0,0,0,0.4);
 }
 
+/* Heading styles */
 h1 {
-  font-size: 2.5rem;
-  color: #72cdfd;
+  font-size: 2.6rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  border-bottom: 2px solid #2b2b2b;
+  padding-bottom: 0.5rem;
 }
 
 .status {
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #ffda79;
-  margin-bottom: 1em;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #ffb703;
+  margin-bottom: 1.5rem;
 }
 
+/* Paragraph styling */
 p {
-  line-height: 1.6;
-  font-size: 1rem;
-  margin-bottom: 1em;
+  margin-bottom: 1.2rem;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .container {
+    margin: 2rem 1rem;
+    padding: 1rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
 }
