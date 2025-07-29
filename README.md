@@ -72,7 +72,7 @@ Thank you for your interest in contributing to HighSpell Botting. This project t
 
 This is a project of technical clarity—not operational assistance. We document, interpret, and expose—**not hand-hold** or distribute exploits.
 
-All contributions must uphold the **intent & ethos** outlined [here](#-intent--ethos). That means keeping the project educational, non-prescriptive, and decentralized. If you’re here to help others learn, build, and think—welcome.
+All contributions must uphold the **intent & ethos** outlined [here](#%EF%B8%8F-intent--ethos). That means keeping the project educational, non-prescriptive, and decentralized. If you’re here to help others learn, build, and think—welcome.
 
 ## ✅ What’s Encouraged
 
