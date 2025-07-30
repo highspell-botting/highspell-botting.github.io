@@ -11,13 +11,13 @@ WebSocket reverse engineering involves analyzing real-time bidirectional communi
 When you log into Highspell, the application establishes **two separate WebSocket connections** that handle different aspects of the game:
 
 ### 1. Game Server WebSocket
-- **Endpoint**: `wss://server2.highspell.com:8888`
+- **Endpoint**: `wss://server#.example.com:8888`
 - **Purpose**: Handles all game state, chat messages, and player interactions
 - **Traffic Volume**: High frequency - sends and receives many packets per second
 - **Message Types**: Game updates, chat messages, player movements, combat events
 
 ### 2. Friends List WebSocket
-- **Endpoint**: `wss://highspell.com:8765/`
+- **Endpoint**: `wss://example.com:8765/`
 - **Purpose**: Manages friends list and online user status
 - **Traffic Volume**: Low frequency - occasional status updates
 - **Message Types**: Friend online/offline notifications, friend list updates

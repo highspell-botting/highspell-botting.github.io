@@ -14,11 +14,6 @@ Understanding the communication protocols between the HighSpell client and serve
 - **Message Formats**: [To be documented]
 - **Authentication**: [To be documented]
 
-### HTTP APIs
-- **REST Endpoints**: [To be documented]
-- **Authentication**: [To be documented]
-- **Rate Limiting**: [To be documented]
-- **Error Handling**: [To be documented]
 
 ## Message Analysis
 
