@@ -1,0 +1,153 @@
+site_name: HighSpell Botting
+site_description: A lens into the architecture of HighSpell—and a spotlight on its vulnerabilities
+site_author: HighSpell Botting Contributors
+site_url: https://highspell-botting.github.io
+
+# Repository
+repo_name: highspell-botting/highspell-botting
+repo_url: https://github.com/highspell-botting/highspell-botting.github.io
+edit_uri: edit/main/docs/
+
+# Copyright
+copyright: Copyright &copy; 2024 HighSpell Botting Contributors
+
+# Theme
+theme:
+  name: material
+  language: en
+  palette:
+    # Palette toggle for automatic mode
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
+  features:
+    - announce.dismiss
+    - content.action.edit
+    - content.action.view
+    - content.code.annotate
+    - content.code.copy
+    - content.code.select
+    - content.tabs.link
+    - content.tooltips
+    - header.autohide
+    - navigation.expand
+    - navigation.footer
+    - navigation.indexes
+    - navigation.instant
+    - navigation.instant.delay
+    - navigation.instant.loading
+    - navigation.instant.preload
+    - navigation.prune
+    - navigation.sections
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.top
+    - navigation.tracking
+    - search.highlight
+    - search.share
+    - search.suggest
+    - toc.follow
+
+# Plugins
+plugins:
+  - search:
+      separator: '[\s\-,:!=\[\]()"/`|]+'
+      prebuild_index: true
+      indexing: 'full'
+  - git-revision-date-localized:
+      enable_creation_date: true
+  - minify:
+      minify_html: true
+
+# Extensions
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.snippets:
+      check_paths: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+      combine_header_slug: true
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+# Navigation
+nav:
+  - Home: index.md
+  - About:
+      - Intent & Ethos: about/intent-ethos.md
+      - Contribution Guidelines: about/contribution-guidelines.md
+      - HighSpell Client Vulnerabilities: about/highspells-problems.md
+  - Resources:
+      - Client Architecture: resources/client-architecture.md
+      - GameActionsEnum: resources/game-websocket.md
+      - SocketManager: resources/socketmanager.md
+      - Security Considerations: resources/security-considerations.md
+  - Guides:
+      - Getting Started: guides/getting-started.md
+      - Reverse Engineering: guides/reverse-engineering.md
+      - Bot Development: guides/bot-development.md
+      - Debugging Techniques: guides/debugging-techniques.md
+
+# Extra
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/highspell-botting/highspell-botting.github.io
+  version:
+    provider: mike
+
+# Extra CSS and JS
+extra_css:
+  - stylesheets/extra.css
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js 

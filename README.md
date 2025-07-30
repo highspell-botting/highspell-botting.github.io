@@ -16,6 +16,11 @@ At its core, HighSpell Botting is a reverse-engineering initiative: a collection
 
 This project demystifies the interface, unlocks buried mechanics, and reframes botting as a learning opportunity for builders, engineers, and system thinkers.
 
+### Foreword
+
+This website is not intended to serve as an ultimate authority or provide comprehensive solutions to every issue related to HighSpell’s client. We do not claim to be experts. Instead, it is a case study demonstrating how even basic knowledge of the client’s structure can pose as sophisticated automation.
+
+
 ---
 
 ## 🎯 The Purpose of This Site
