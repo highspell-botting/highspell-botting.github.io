@@ -22,7 +22,7 @@ When you log into Highspell, the application establishes **two separate WebSocke
 - **Traffic Volume**: Low frequency - occasional status updates
 - **Message Types**: Friend online/offline notifications, friend list updates
 
-**Important Note**: Chat messages are **NOT** handled by the friends WebSocket. All chat communication goes through the game server WebSocket at `server2.highspell.com:8888`.
+**Important Note**: Chat messages are **NOT** handled by the friends WebSocket. All chat communication goes through the game server WebSocket at `server#.example.com:8888`.
 
 ## Using Browser Developer Tools
 

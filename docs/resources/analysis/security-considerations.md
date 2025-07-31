@@ -1,6 +1,6 @@
 # 🔒 Security Considerations
 
-*This page documents security considerations, ethical guidelines, and responsible practices for reverse engineering and automation research.*
+*This page documents security considerations, ethical guidelines, and responsible practices for reverse engineering and automation.*
 
 ## Overview
 
@@ -10,15 +10,13 @@ Security research and reverse engineering must be conducted responsibly, with ca
 
 ### Core Principles
 1. **Do No Harm**: Avoid actions that could damage systems or disrupt services
-2. **Respect Boundaries**: Stay within legal and ethical limits
-3. **Be Transparent**: Disclose methods and intentions clearly
-4. **Act Responsibly**: Consider the consequences of your actions
+2. **Respect Boundaries**: Stay within legal limits
+3. **Act Responsibly**: Consider the consequences of your actions
 
 ### Responsible Disclosure
 - **Private Reporting**: Report vulnerabilities to system owners first
 - **Public Disclosure**: Share findings only after appropriate delays
 - **Educational Focus**: Emphasize learning over exploitation
-- **Community Benefit**: Contribute to collective security knowledge
 
 ## Legal Considerations
 
@@ -57,18 +55,5 @@ Security research and reverse engineering must be conducted responsibly, with ca
 - **Disruption**: Interfering with system operation
 - **Data Extraction**: Collecting sensitive information
 - **Distribution**: Sharing tools for malicious use
-
-## Community Guidelines
-
-### Contributing Responsibly
-- **Review Guidelines**: Understand project contribution policies
-- **Follow Standards**: Adhere to established coding and documentation standards
-- **Respect Others**: Be considerate of other contributors and users
-- **Stay Focused**: Keep contributions aligned with project goals
-
-### Sharing Knowledge
-- **Educational Focus**: Emphasize learning and understanding
-- **Responsible Disclosure**: Share findings in appropriate ways
-- **Community Benefit**: Contribute to collective knowledge
 
 ---

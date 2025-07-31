@@ -121,19 +121,35 @@ markdown_extensions:
 nav:
   - Home: index.md
   - About:
+      - HighSpell Client Vulnerabilities: about/highspells-problems.md
       - Intent & Ethos: about/intent-ethos.md
       - Contribution Guidelines: about/contribution-guidelines.md
-      - HighSpell Client Vulnerabilities: about/highspells-problems.md
   - Resources:
-      - Client Architecture: resources/client-architecture.md
-      - GameActionsEnum: resources/game-websocket.md
-      - SocketManager: resources/socketmanager.md
-      - Security Considerations: resources/security-considerations.md
+      - Protocol Analysis:
+          - Overview: resources/protocol/index.md
+          - GameActionsEnum: resources/protocol/game-websocket.md
+          - SocketManager: resources/protocol/socketmanager.md
+          - Protocol Analysis: resources/protocol/protocol-analysis.md
+      - Entity Classes:
+          - Overview: resources/entities/index.md
+          - Entity: resources/entities/entity.md
+          - TranslateableEntity: resources/entities/translateableentity.md
+          - PlayerEntity: resources/entities/playerentity.md
+          - MainPlayer: resources/entities/mainplayer.md
+          - WorldEntity: resources/entities/worldentity.md
+          - InventoryItem: resources/entities/inventoryitem.md
+      - Manager Classes:
+          - Overview: resources/managers/index.md
+          - WorldEntityManager: resources/managers/worldentitymanager.md
+          - TargetActionManager: resources/managers/targetactionmanager.md
+          - TargetActionEnum: resources/managers/targetaction.md
+      - Analysis & Security:
+          - Overview: resources/analysis/index.md
+          - Client Architecture: resources/analysis/client-architecture.md
+          - Security Considerations: resources/analysis/security-considerations.md
   - Guides:
       - Getting Started: guides/getting-started.md
       - Reverse Engineering: guides/reverse-engineering.md
-      - Bot Development: guides/bot-development.md
-      - Debugging Techniques: guides/debugging-techniques.md
 
 # Extra
 extra:

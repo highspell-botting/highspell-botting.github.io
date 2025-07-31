@@ -89,7 +89,7 @@ You may see a response like:
     "latestServerVersion": 53,
     "files": {
       "defs": {
-        "itemDefs": "https://example.com:8887/static/itemdefs.29.carbon",
+        "itemDefs": "https://example.com:8887/static/itemdefs.##.carbon",
         ...
       },
       "gameAssets": {
