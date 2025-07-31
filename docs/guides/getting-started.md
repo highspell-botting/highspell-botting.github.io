@@ -105,22 +105,6 @@ You may see a response like:
 - **gameAssets**: Contains URLs to the latest game asset files (maps, textures, meshes, etc.).
 - **latestClientVersion / latestServerVersion**: Indicates the current version numbers for compatibility checking.
 
-## Documentation Best Practices
-
-### What to Document
-- **API endpoints** and their purposes
-- **Data structures** and formats
-- **Event handling** mechanisms
-- **State management** patterns
-- **Security measures** and their effectiveness
-
-### How to Document
-- **Be precise** with technical details
-- **Include code examples** where relevant
-- **Explain the reasoning** behind your findings
-- **Update regularly** as you discover new information
-- **Share with the community** for feedback and validation
-
 ## Next Steps
 
 ### Overriding `client.##.js` Using Chrome Workspaces
@@ -168,6 +152,161 @@ To modify or debug the client JavaScript file (`client.##.js`), you can use Chro
 ---
 
 > **Note:** This workflow is useful for debugging, reverse engineering, or customizing client-side behavior without modifying server files.
+
+## Exposing Singletons from IIFEs
+
+When reverse engineering JavaScript applications, you'll often encounter code wrapped in Immediately Invoked Function Expressions (IIFEs) that contain singleton instances with useful functions. To access these functions outside the IIFE scope, you need to expose them strategically.
+
+### Method 1: Global Scope Exposure (Simplest)
+
+The most straightforward approach is to expose singleton instances to the global scope:
+
+```javascript
+// Inside the IIFE, add this line to expose a singleton
+window.gameManager = gameManagerInstance;
+
+// Later, outside the IIFE, you can access it
+gameManager.someFunction();
+```
+
+**Pros:**
+- Minimal code changes
+- Easy to implement
+- Direct access to all singleton methods
+
+**Cons:**
+- Pollutes global scope
+- Can conflict with other global variables
+- Less maintainable in larger applications
+
+### Method 2: Namespace Pattern (Recommended)
+
+Create a dedicated namespace to avoid global pollution:
+
+```javascript
+// Inside the IIFE
+window.HighSpellAPI = window.HighSpellAPI || {};
+window.HighSpellAPI.gameManager = gameManagerInstance;
+window.HighSpellAPI.networkManager = networkManagerInstance;
+
+// Outside the IIFE
+HighSpellAPI.gameManager.someFunction();
+HighSpellAPI.networkManager.sendMessage();
+```
+
+**Pros:**
+- Organized and namespaced
+- Reduces global scope pollution
+- Easy to manage multiple singletons
+- Clear API surface
+
+**Cons:**
+- Slightly more code
+- Still uses global scope (but organized)
+
+### Method 3: Proxy Object Pattern (Advanced)
+
+Create a proxy object that provides controlled access to singleton methods:
+
+```javascript
+// Inside the IIFE
+window.HighSpellProxy = new Proxy({}, {
+  get: function(target, prop) {
+    switch(prop) {
+      case 'game':
+        return gameManagerInstance;
+      case 'network':
+        return networkManagerInstance;
+      case 'inventory':
+        return inventoryManagerInstance;
+      default:
+        return undefined;
+    }
+  }
+});
+
+// Outside the IIFE
+HighSpellProxy.game.someFunction();
+HighSpellProxy.network.sendMessage();
+```
+
+**Pros:**
+- No direct global exposure of singletons
+- Controlled access to functionality
+- Can add validation, logging, or security checks
+- Easy to extend with new methods
+
+**Cons:**
+- More complex implementation
+- Slightly more verbose usage
+
+### Method 4: Module Pattern with Exports
+
+For more sophisticated setups, use a module-like pattern:
+
+```javascript
+// Inside the IIFE
+window.HighSpellExports = {
+  getGameManager: () => gameManagerInstance,
+  getNetworkManager: () => networkManagerInstance,
+  getInventoryManager: () => inventoryManagerInstance,
+  
+  // Or expose specific methods directly
+  sendMessage: (msg) => networkManagerInstance.sendMessage(msg),
+  getPlayerPosition: () => gameManagerInstance.getPlayerPosition()
+};
+
+// Outside the IIFE
+const gameManager = HighSpellExports.getGameManager();
+gameManager.someFunction();
+
+// Or use direct method access
+HighSpellExports.sendMessage("Hello World");
+```
+
+**Pros:**
+- Encapsulated access
+- Can expose only specific methods
+- Easy to add wrapper functionality
+- Good for API design
+
+**Cons:**
+- More code to maintain
+- Requires careful API design
+
+### Practical Example: HighSpell Client
+
+Here's how you might expose key singletons from the HighSpell client:
+
+```javascript
+// Add this at the end of the client IIFE
+window.HighSpellAPI = {
+  // Core managers
+  gameManager: gameManager,
+  networkManager: networkManager,
+  worldManager: worldManager,
+  
+  // Utility functions
+  sendMessage: (type, data) => networkManager.send(type, data),
+  getPlayer: () => gameManager.getPlayer(),
+  getWorld: () => worldManager.getWorld(),
+  
+  // Event system access
+  on: (event, callback) => eventManager.on(event, callback),
+  off: (event, callback) => eventManager.off(event, callback)
+};
+
+// Usage outside the IIFE
+HighSpellAPI.sendMessage('move', { x: 100, y: 200 });
+const player = HighSpellAPI.getPlayer();
+HighSpellAPI.on('playerMove', (data) => console.log('Player moved:', data));
+```
+
+### Troubleshooting
+
+- **Singleton not found**: Ensure you're exposing the singleton after it's initialized
+- **Function undefined**: Check that the function exists on the singleton before exposing
+- **Timing issues**: Make sure the IIFE has completed execution before trying to access exposed functions
 
 ### Immediate Actions
 1. **Set up your development environment to handle *very* large JS files**

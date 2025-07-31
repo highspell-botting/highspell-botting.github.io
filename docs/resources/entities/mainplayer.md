@@ -4,7 +4,7 @@
 The `MainPlayer` class extends the `PlayerEntity` class and represents the primary player character in the HighSpell game. It builds on the capabilities of `PlayerEntity` and `TranslateableEntity`, adding specific functionality for managing the player’s combat stats, skills, inventory, bank storage, quests, and session-related data. This class is central to the game’s client-side logic, handling the player’s interactions with the game world.
 
 ## Usefulness for botting
-A `MainPlayer` is the bread and butter of your player character. Holding information such as your `_skills` and `_combat` which contain your skill levels, total xp, etc for both Combat and NonCombat skills. As well as your state, your own `_isMoving`, and your `_inventory` which holds an array `_items` of `InventoryItem`'s which contains the `ItemDef` of each item as well as all the information about that item. Making automating inventory actions a breeze. This works for the players `_bankItems` as well.
+A `MainPlayer` is the core of your player character, serving as the foundation for all essential data. It stores information like `_skills` and `_combat`, which track your skill levels, total XP, and other details for both Combat and Non-Combat skills. Additionally, it manages your state, including `_isMoving`, and your `_inventory`, which contains an array, `_items`, of `InventoryItem` objects. Each `InventoryItem` includes the `ItemDef` for an item along with all its relevant details, making automated inventory actions seamless. This structure also applies to the player's `_bankItems`.
 
 
 ## Inheritance
