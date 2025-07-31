@@ -170,11 +170,13 @@ gameManager.someFunction();
 ```
 
 **Pros:**
+
 - Minimal code changes
 - Easy to implement
 - Direct access to all singleton methods
 
 **Cons:**
+
 - Pollutes global scope
 - Can conflict with other global variables
 - Less maintainable in larger applications
@@ -195,12 +197,14 @@ HighSpellAPI.networkManager.sendMessage();
 ```
 
 **Pros:**
+
 - Organized and namespaced
 - Reduces global scope pollution
 - Easy to manage multiple singletons
 - Clear API surface
 
 **Cons:**
+
 - Slightly more code
 - Still uses global scope (but organized)
 
@@ -231,12 +235,14 @@ HighSpellProxy.network.sendMessage();
 ```
 
 **Pros:**
+
 - No direct global exposure of singletons
 - Controlled access to functionality
 - Can add validation, logging, or security checks
 - Easy to extend with new methods
 
 **Cons:**
+
 - More complex implementation
 - Slightly more verbose usage
 
@@ -265,12 +271,14 @@ HighSpellExports.sendMessage("Hello World");
 ```
 
 **Pros:**
+
 - Encapsulated access
 - Can expose only specific methods
 - Easy to add wrapper functionality
 - Good for API design
 
 **Cons:**
+
 - More code to maintain
 - Requires careful API design
 
