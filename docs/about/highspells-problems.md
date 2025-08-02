@@ -31,5 +31,3 @@ The HighSpell client, built in JavaScript, presents significant vulnerabilities 
   - **Client-Side Handlers**: Override functions like `_gameStateUpdate` or `_handler` in `SocketManager` to manipulate action processing.
 - **Changeability**: While currently accessible, data structures and function names (e.g., `WorldEntityManager`, `MainPlayer`) may change in major updates. Verify using browser developer tools or WebSocket traffic analysis.
 
-## Ethical Considerations
-The HighSpell client’s accessibility exposes its mechanics, making it vulnerable to automation. Per the HighSpell Botting project’s ethos, this analysis is for educational purposes. Use this knowledge to understand client architecture and how and why botting is and continues to be a problem.

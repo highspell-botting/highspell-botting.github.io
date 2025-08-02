@@ -1,4 +1,4 @@
-# 🚀 Getting Started
+# Getting Started
 
 Welcome to the HighSpell Botting documentation. This guide will help you understand the fundamentals of reverse engineering web applications and prepare you for exploring the HighSpell client.
 
@@ -320,6 +320,8 @@ HighSpellAPI.on('playerMove', (data) => console.log('Player moved:', data));
 1. **Set up your development environment to handle *very* large JS files**
 2. **Familiarize yourself with the tools at your disposal**
 3. **Start with basic analysis**
+
+Try to identify the mentioned managers through console.log statements, methods, and variables.
 
 ### Learning Resources
 - **Browser Developer Tools documentation**

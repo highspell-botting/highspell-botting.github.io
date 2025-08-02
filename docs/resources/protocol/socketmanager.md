@@ -1,7 +1,10 @@
 # SocketManager Analysis
 
 ## Overview
-The `SocketManager` class in the HighSpell client manages WebSocket communication, processing incoming `GameActionsEnum` packets through a `_gameStateUpdate` method that delegates to a `_handler`. This setup allows for interception of these functions to implement custom logic for handling game state information. This analysis explores how to intercept these packets to monitor player state or trigger events, aligning with the HighSpell Botting project’s goal of transparent, educational documentation.
+The `SocketManager` class in the HighSpell client manages WebSocket communication, processing incoming `GameActionsEnum` packets through a `_gameStateUpdate` method that delegates to a `_handler`. This setup allows for interception of these functions to implement custom logic for handling game state information. This analysis explores how to intercept these packets to monitor player state or trigger events, aligning with the HighSpell Botting project's goal of transparent, educational documentation.
+
+## Usefulness for Botting
+The `SocketManager` class is essential for bot development as it serves as the primary gateway for all game state information and network communication. By intercepting the `_gameStateUpdate` method and its associated `_handler`, bots can monitor real-time game events such as player state changes, combat actions, inventory updates, and chat messages. This enables sophisticated automation that responds to game conditions rather than relying solely on polling. The class's integration with `GameActionsEnum` provides a structured way to filter and process specific packet types, allowing bots to detect when players start banking, begin skilling, receive private messages, or enter combat. Additionally, the separate chat WebSocket endpoint offers opportunities for notification systems and automated responses to social interactions. The ability to intercept and potentially modify packet handling makes `SocketManager` a critical component for creating responsive, event-driven automation systems.
 
 ## Important Notes
 - **Changeability**: The `_gameStateUpdate` and `_handler` methods, along with their integration with `GameActionsEnum`, may change in major client updates due to code refactoring or new features. Verify their implementation in the client code or WebSocket traffic after updates.
@@ -47,12 +50,4 @@ The `_gameStateUpdate` method takes a `GameActionsEnum` ID and its associated da
   - Browser developer tools to inspect `SocketManager` code.
 
 ## Recommendations for Reverse Engineers
-- **Intercept Handlers**: Override `_gameStateUpdate` or `_handler` in the client code (via a script or dev tools) to log or process specific packets.
-- **Monitor Chat WebSocket**: Use SocketScoop to capture `PrivateMessage` packets and test notification logic.
-- **Poll State**: Combine packet interception with `MainPlayers` state polling for robust state tracking.
-- **Verify Updates**: After client updates, recheck `SocketManager` methods and `GameActionsEnum` mappings to ensure compatibility.
-
-## Ethical and Legal Notes
-Per the HighSpell Botting Resources ethos:
-- This documentation is for educational purposes, analyzing observable game client behavior.
-- Using this information to create bots violates HighSpell’s terms of service, risking account bans.
+- **Intercept Handlers**: Override `
