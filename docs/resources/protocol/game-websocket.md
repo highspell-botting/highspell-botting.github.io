@@ -141,3 +141,8 @@ The `GameActionsEnum` is an enum-like structure in the HighSpell client, definin
 - **Changeability**: IDs may shift in major client updates (e.g., new actions added, existing ones reordered). Verify IDs by:
   - Inspecting the `GameActionsEnum` definition in the client code (via developer tools or deobfuscated scripts).
   - Monitoring WebSocket traffic to correlate IDs with payloads.
+
+## Ethical and Legal Notes
+Per the HighSpell Botting Resources ethos:
+- This documentation is for educational purposes, analyzing observable game client behavior.
+- Using this information to create bots violates HighSpell’s terms of service, risking account bans.

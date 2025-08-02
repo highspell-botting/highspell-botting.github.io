@@ -1,12 +1,14 @@
 # TargetActionEnum Documentation
 
 ## Overview
-The `TargetAction` enum defines a set of possible actions that a player can perform on entities or locations in the HighSpell game. It is used by classes like `TargetActionManager` to determine the context-sensitive interactions available when the player clicks on an entity or point in the game world. Each action is assigned a unique numeric value and a corresponding string identifier, facilitating both client-side logic and server communication.
+The `TargetActionEnum` enum defines a set of possible actions that a player can perform on entities or locations in the HighSpell game. It is used by classes like `TargetActionManager` to determine the context-sensitive interactions available when the player clicks on an entity or point in the game world. Each action is assigned a unique numeric value and a corresponding string identifier, facilitating both client-side logic and server communication.
 
-This documentation aligns with the HighSpell Botting Resources project, providing a technical analysis of the `TargetActionOriginal` enum to enhance understanding of the game client’s interaction system, emphasizing educational insights over exploitative automation.
+
+## Usefulness for Botting
+The `TargetActionEnum` enum is crucial for bot development as it enumerates all possible player interactions, such as `attack`, `grab`, `fish`, or `walk_here`, which can be programmatically triggered via `TargetActionManager.handleTargetAction`. By mapping actions to numeric IDs, bots can precisely target specific interactions (e.g., `grab` for picking up items, `mine` for resource gathering) on entities or locations. The enum’s integration with network packets (e.g., via `SocketManager` in `TargetActionManager`) allows bots to simulate player actions, enabling automation of tasks like combat, resource collection, or navigation, though such actions violate HighSpell’s terms of service. Most items and NPCS will have a list of TargetActions called `Actions` that are obtuse without this enum.
 
 ## Enum Definition
-The `TargetActionOriginal` enum (aliased as `TargetAction`) is defined as a JavaScript IIFE (Immediately Invoked Function Expression) that populates an object with action constants. Each entry maps a numeric value to a string key, and vice versa, enabling bidirectional lookup.
+The `TargetActionEnum` enum is defined as a JavaScript IIFE (Immediately Invoked Function Expression) that populates an object with action constants. Each entry maps a numeric value to a string key, and vice versa, enabling bidirectional lookup.
 
 ### Enum Values
 The enum defines the following actions, listed with their numeric values and string identifiers:
@@ -69,4 +71,3 @@ The enum defines the following actions, listed with their numeric values and str
 Per the HighSpell Botting Resources ethos:
 - This documentation is for educational purposes, analyzing observable game client behavior.
 - Using this information to create bots violates HighSpell’s terms of service, risking account bans.
-- The project encourages technical understanding over exploitation, focusing on insights into interaction mechanics rather than providing automation scripts.

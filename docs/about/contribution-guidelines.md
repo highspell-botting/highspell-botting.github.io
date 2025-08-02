@@ -36,8 +36,6 @@ Every contribution should invite others to think critically and dig further, not
 
 ### Writing Style Guidelines
 
-- **Be precise**: Use technical language accurately
-- **Be curious**: Ask questions that lead to deeper understanding
 - **Be thoughtful**: Consider the implications and consequences
 - **Be educational**: Focus on learning and understanding
 - **Be transparent**: Disclose methods and sources

@@ -80,3 +80,8 @@ The `MainPlayer` class defines additional properties, accessed via getters:
 ## Technical Observations
 - **Event System**: The `_onReceivedBankItemsListeners` Map supports asynchronous bank item loading, suggesting networked data retrieval.
 - **Potential Bug**: The `addReceivedBankItemsListener` method always returns `false`, which may confuse callers expecting a success indicator.
+
+## Ethical and Legal Notes
+Per the HighSpell Botting Resources ethos:
+- This documentation is for educational purposes, analyzing observable game client behavior.
+- Using this information to create bots violates HighSpell’s terms of service, risking account bans.

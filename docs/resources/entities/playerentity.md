@@ -50,3 +50,8 @@ The `PlayerEntity` class defines additional properties, accessed via getters and
 ## Technical Observations
 - **Minimal Specialization**: The class adds minimal new functionality, primarily refining movement snapping in `draw` and cleaning up player-specific resources in `destroy`.
 - **Rendering Optimization**: The snapping logic in `draw` prevents visual jittering for large movements, indicating attention to smooth player rendering.
+
+## Ethical and Legal Notes
+Per the HighSpell Botting Resources ethos:
+- This documentation is for educational purposes, analyzing observable game client behavior.
+- Using this information to create bots violates HighSpell’s terms of service, risking account bans.

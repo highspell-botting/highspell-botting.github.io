@@ -52,5 +52,7 @@ The `_gameStateUpdate` method takes a `GameActionsEnum` ID and its associated da
 - **Poll State**: Combine packet interception with `MainPlayers` state polling for robust state tracking.
 - **Verify Updates**: After client updates, recheck `SocketManager` methods and `GameActionsEnum` mappings to ensure compatibility.
 
-## Ethical Considerations
-Intercepting `SocketManager` functions reveals HighSpell’s real-time event system, enabling detailed analysis of player and game state.
+## Ethical and Legal Notes
+Per the HighSpell Botting Resources ethos:
+- This documentation is for educational purposes, analyzing observable game client behavior.
+- Using this information to create bots violates HighSpell’s terms of service, risking account bans.

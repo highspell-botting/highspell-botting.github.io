@@ -4,7 +4,7 @@
 The `Entity` class serves as the base class for all entities in the HighSpell game, providing a foundation for objects like players, NPCs, and world objects (e.g., `WorldEntity`). It encapsulates core properties such as identity, position, state, and appearance, along with event listeners for lifecycle events. This class is extended by more specific classes like `WorldEntity` to add specialized behavior.
 
 ## Usefulness for botting
-A `Entity` is the basis that holds most of the information that's useful in dervied classes, such as `EntityId` for NPCs and `EntityTypeId` for World Objects. 
+A `Entity` is the basis that holds most of the information useful in dervied classes, such as `EntityId` for NPCs and `EntityTypeId` for World Objects. 
 
 ## Key Properties
 The `Entity` class defines properties, primarily accessed via getters, with one setter for state changes:
@@ -74,3 +74,8 @@ The class uses a `Listeners` system to manage events:
 - **Extensibility**: The empty `update` and `draw` methods suggest the class is designed for inheritance, with subclasses like `WorldEntity` adding specific behavior.
 - **Event-Driven Design**: The listener system supports a reactive architecture, allowing dynamic responses to entity changes.
 - **Destruction**: The `destroy` method is thorough, nullifying all properties and cleaning up resources, likely to prevent memory leaks in a 3D rendering context (e.g., Babylon.js).
+
+## Ethical and Legal Notes
+Per the HighSpell Botting Resources ethos:
+- This documentation is for educational purposes, analyzing observable game client behavior.
+- Using this information to create bots violates HighSpell’s terms of service, risking account bans.

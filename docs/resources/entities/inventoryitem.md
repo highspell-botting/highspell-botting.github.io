@@ -55,3 +55,8 @@ The `InventoryItem` class defines properties, accessed via getters and setters:
 ## Technical Observations
 - **Lazy Loading**: The `_def` property is lazily loaded to optimize performance, only fetching the definition when accessed.
 - **Serialization**: Supports both array-based (`toSocketArray`) and JSON (`toJson`) serialization, likely for network communication and local storage, respectively.
+
+## Ethical and Legal Notes
+Per the HighSpell Botting Resources ethos:
+- This documentation is for educational purposes, analyzing observable game client behavior.
+- Using this information to create bots violates HighSpell’s terms of service, risking account bans.

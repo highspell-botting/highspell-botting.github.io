@@ -125,24 +125,31 @@ nav:
       - Intent & Ethos: about/intent-ethos.md
       - Contribution Guidelines: about/contribution-guidelines.md
   - Resources:
-      - Protocol Analysis:
-          - Overview: resources/protocol/index.md
-          - GameActionsEnum: resources/protocol/game-websocket.md
-          - SocketManager: resources/protocol/socketmanager.md
-          - Protocol Analysis: resources/protocol/protocol-analysis.md
-      - Entity Classes:
+      - 🎮 Manager Classes:
+          - Overview: resources/managers/index.md
+          - TargetActionManager: resources/managers/targetactionmanager.md
+          - GroundItemManager: resources/managers/grounditemmanager.md
+          - ItemManager: resources/managers/itemmanager.md
+          - SpellManager: resources/managers/spellmanager.md
+          - WorldEntityManager: resources/managers/worldentitymanager.md
+          - TargetActionEnum: resources/managers/targetaction.md
+          - MenuTypesEnumOriginal: resources/managers/menutypes.md
+      - 🎭 Entity Classes:
           - Overview: resources/entities/index.md
           - Entity: resources/entities/entity.md
           - TranslateableEntity: resources/entities/translateableentity.md
           - PlayerEntity: resources/entities/playerentity.md
           - MainPlayer: resources/entities/mainplayer.md
           - WorldEntity: resources/entities/worldentity.md
+          - GroundItem: resources/entities/grounditem.md
           - InventoryItem: resources/entities/inventoryitem.md
-      - Manager Classes:
-          - Overview: resources/managers/index.md
-          - WorldEntityManager: resources/managers/worldentitymanager.md
-          - TargetActionManager: resources/managers/targetactionmanager.md
-          - TargetActionEnum: resources/managers/targetaction.md
+          - SpellDef & SpellDefs: resources/entities/spelldefs.md
+      - 🌐 Protocol Analysis:
+          - Overview: resources/protocol/index.md
+          - GameActionFactory: resources/protocol/gameactionfactory.md
+          - GameActionsEnum: resources/protocol/game-websocket.md
+          - SocketManager: resources/protocol/socketmanager.md
+          - Protocol Analysis: resources/protocol/protocol-analysis.md
       - Analysis & Security:
           - Overview: resources/analysis/index.md
           - Client Architecture: resources/analysis/client-architecture.md

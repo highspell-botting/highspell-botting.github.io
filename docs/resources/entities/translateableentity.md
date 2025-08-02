@@ -99,3 +99,8 @@ The `TranslateableEntity` class defines additional properties, primarily accesse
 - **Event-Driven Design**: Extensive use of listeners for movement, teleportation, and equipment changes supports a reactive architecture.
 - **Player-Specific Logic**: Special handling for human/player entities (e.g., `_equipmentBonuses`, `_entityType` override) suggests tailored behavior for player characters.
 - **Rendering**: Likely integrates with a 3D engine (e.g., Babylon.js, given `HaloNode`, `HitboxNode`), with dynamic ground height adjustments.
+
+## Ethical and Legal Notes
+Per the HighSpell Botting Resources ethos:
+- This documentation is for educational purposes, analyzing observable game client behavior.
+- Using this information to create bots violates HighSpell’s terms of service, risking account bans.

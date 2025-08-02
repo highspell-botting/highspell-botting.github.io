@@ -4,24 +4,7 @@
 
 ## Overview
 
-The HighSpell client is a web-based application that presents a system of interconnected components. Understanding its architecture is fundamental to any reverse engineering or automation efforts.
-
-## Core Components
-
-### Frontend Framework
-- **Technology Stack**: [To be documented]
-- **State Management**: [To be documented]
-- **UI Components**: [To be documented]
-
-### Communication Layer
-- **WebSocket Connections**: [To be documented]
-- **HTTP APIs**: [To be documented]
-- **Data Formats**: [To be documented]
-
-### Game Logic
-- **State Management**: [To be documented]
-- **Event Handling**: [To be documented]
-- **Game Mechanics**: [To be documented]
+The HighSpell client is a web-based application that presents a system of interconnected components.
 
 ## Data Flow
 
@@ -50,7 +33,7 @@ The HighSpell client operates on two independent WebSocket connections, each des
 Client-side input and server feedback follow a multi-step communication loop:
 
 ```
-[User Input] ↓ [Event Handler] ↓ [State Change + Outbound Packet] ↓ [WebSocket Transmission] ↓ [Server] ↓ [Server-Side State Update] ↓ [Response Packet] ↓ [Client Processing] ↓ [UI Update]
+[User Input] ↓ [Manager Layer] ↓ [State Change + Outbound Packet] ↓ [WebSocket Transmission] ↓ [Server] ↓ [Server-Side State Update] ↓ [Response Packet] ↓ [Manager Processing] ↓ [UI Update]
 ```
 
 - **Outbound Communication**: Triggered by user actions, event handlers package contextual data into protocol-specific formats and dispatch through the appropriate socket.
@@ -75,45 +58,3 @@ Client-side input and server feedback follow a multi-step communication loop:
 ### Anti-Bot Measures
 - [To be documented]
 
-
-## Automation Points
-
-### Identified Interfaces
-- **DOM Elements**: [To be documented]
-- **JavaScript Objects**: [To be documented]
-- **Network Requests**: [To be documented]
-
-### Vulnerabilities
-- **Client-Side Validation**: [To be documented]
-- **State Manipulation**: [To be documented]
-- **Communication Interception**: [To be documented]
-
-## Analysis Tools
-
-### Browser Developer Tools
-- **Network Tab**: Monitor client-server communication
-- **Console**: Access JavaScript objects and functions
-- **Elements Tab**: Inspect DOM structure
-- **Sources Tab**: Analyze JavaScript code
-
-### External Tools
-- **WebSocket Analyzers**: [To be documented]
-- **Network Proxies**: [To be documented]
-- **Code Deobfuscators**: [To be documented]
-
-## Development Notes
-
-*This section will be updated as new architectural insights are discovered and documented.*
-
-### Recent Findings
-- [To be documented]
-
-### Areas for Further Research
-- [To be documented]
-
-### Known Limitations
-- [To be documented]
-
----
-
-*Remember: This documentation is for educational purposes only. Always respect the terms of service and use this knowledge responsibly.* 

@@ -81,3 +81,8 @@ The class manages resource states for entities like trees, ores, or chests, affe
 ## Technical Observations
 - **Appearance Management**: The `_appearance` object (inherited from `Entity`) handles visual changes, such as recoloring, hiding, or adjusting transparency, indicating a 3D rendering pipeline (likely Babylon.js, given `ro.v9`).
 - **Map Editor**: The inclusion of `MapEditor` logic suggests the class supports both gameplay and development tools.
+
+## Ethical and Legal Notes
+Per the HighSpell Botting Resources ethos:
+- This documentation is for educational purposes, analyzing observable game client behavior.
+- Using this information to create bots violates HighSpell’s terms of service, risking account bans.

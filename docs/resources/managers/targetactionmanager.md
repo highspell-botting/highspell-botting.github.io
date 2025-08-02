@@ -3,9 +3,8 @@
 ## Overview
 The `TargetActionManager` class is a static utility class in the HighSpell game responsible for managing interactions between the player and entities or locations in the game world. It processes mouse pointer input to identify entities and their associated actions (e.g., inspect, attack, walk), handles action execution, and facilitates pathfinding for movement. This class is central to the game’s interaction system, enabling context-sensitive actions based on what the player clicks.
 
-## Usefulness for botting
-The `TargetActionManager` is a great place to hook into functionality that handles movement and interaction. `handleWalkTo(e,t)` and `handleTargetAction(e, t)`. Assuming you pass the required information, which you can relatively easily get throughout the other classes mentioned.
-
+## Usefulness for Botting
+The `TargetActionManager` class is a critical component for bot development due to its role in processing player interactions with entities and the game world. Methods like `handleTargetAction(e, t)` allow bots to simulate actions such as `attack`, `grab`, or `talk_to` on specific entities (e.g., NPCs, players, or objects) by passing the appropriate `TargetAction` enum value and entity object. Similarly, `handleWalkTo(e, t)` enables automated navigation by specifying coordinates, leveraging the built-in client-side pathfinding to move the player efficiently. By combining these methods with data from classes like `EntityManager`, `GroundItemManager`, and `WorldEntityManager`, bots can identify targets and execute complex sequences of actions, such as looting items or engaging in combat.
 
 ## Key Features
 - **Static Methods**: All methods are static, indicating the class is a utility without instantiation.
@@ -116,3 +115,8 @@ The `TargetActionManager` is a great place to hook into functionality that handl
 - **Raycasting**: Processes picking info from raycasts.
 - **Pathfinding**: Implements client-side pathfinding with fallback coordinates.
 - **Network Integration**: Uses `SocketManager` for server communication, ensuring actions are validated server-side.
+
+## Ethical and Legal Notes
+Per the HighSpell Botting Resources ethos:
+- This documentation is for educational purposes, analyzing observable game client behavior.
+- Using this information to create bots violates HighSpell’s terms of service, risking account bans.

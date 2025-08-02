@@ -56,4 +56,7 @@ For a detailed analysis of the game server's WebSocket communications—includin
 
 ---
 
-*This documentation is for educational purposes. Always respect terms of service and use this knowledge responsibly.* 
+## Ethical and Legal Notes
+Per the HighSpell Botting Resources ethos:
+- This documentation is for educational purposes, analyzing observable game client behavior.
+- Using this information to create bots violates HighSpell’s terms of service, risking account bans.

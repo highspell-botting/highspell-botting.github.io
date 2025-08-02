@@ -40,14 +40,10 @@ This is a learning resource, not a tool repository. We prioritize understanding 
 ### 3. Responsible Disclosure
 We document vulnerabilities and weaknesses not to exploit them, but to highlight the need for better security practices and system design.
 
-### 4. Community-Driven
-This project thrives on contributions from those who share our values of technical curiosity and ethical exploration.
-
 ## What We Don't Do
 
 - ❌ Distribute ready-to-use bot scripts
 - ❌ Provide step-by-step tutorials for rule violations
-- ❌ Promote or encourage account suspension
 - ❌ Share private or proprietary information
 - ❌ Facilitate commercial exploitation
 
