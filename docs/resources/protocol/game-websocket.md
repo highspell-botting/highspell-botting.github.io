@@ -2,14 +2,39 @@
 
 Overview
 
-The `GameActionsEnum` is an enum-like structure in the HighSpell client, defining 118 action or event types (IDs 0–117). These are used to categorize game events, such as player movements, inventory changes, and UI interactions, primarily for WebSocket communication between the client and server. This document lists each action, its ID, and its purpose, aligning with the HighSpell Botting project’s goal of transparent, educational documentation.
+The `GameActionsEnum` is an enum-like structure in the HighSpell client, defining action or event types for WebSocket communication between client and server. This document covers both the legacy system (pre-update) and the new unified action system discovered through protocol analysis.
 
 ## Important Notes
 
-- **Changeability**: These IDs are specific to the current client version. Major updates may reorder, add, or remove actions, requiring verification in the client code (e.g., via browser developer tools or deobfuscated scripts). Always check the latest `GameActionsEnum` definition after updates.
-- **WebSocket Usage**: Each action’s ID is used as an opcode in WebSocket messages, paired with an array payload (e.g., `["43",[5,0,605]]` for `PerformActionOnEntity`).
+- **Protocol Change**: A major update simplified the packet structure, moving to a unified action-based system under packet type "1" for player actions.
+- **Changeability**: These IDs are specific to the current client version. Major updates may reorder, add, or remove actions.
+- **WebSocket Usage**: Messages use format `42["packetType", payload]` for Socket.IO communication.
 
-## Game Actions
+## Current Protocol (Post-Update)
+
+### Packet Structure
+All player actions now use packet type `"1"` with format: `42["1", [ActionType, Parameters]]`
+
+| Action Type | Purpose | Data Structure |
+| --- | --- | --- |
+| 10 | Player Movement | `[10, [x, y]]` - Move to coordinates |
+| 16 | Idle State | `[16, [entityId]]` - Player entered idle state |
+| 42 | Interaction | `[42, [action, target, objectId]]` - Interact with objects/NPCs |
+
+### Other Packet Types
+| Packet Type | Purpose | Data Structure |
+| --- | --- | --- |
+| "0" | Game State Updates | `[0, [[actionId, payload], ...]]` - Multiple state updates |
+| "15" | Login Response | `[15, [entityId, ...stats, x, y, ...]]` - Initial login data |
+| "18" | Entity Confirmation | `[18, [entityId]]` - Confirms player entity ID |
+| "pm" | Private Message | `[pm, {from, msg, type}]` - Direct messages |
+
+### Discovery Status
+- ✅ **Confirmed**: Player movement (10), idle state (16), login (15)  
+- 🔍 **Investigating**: Interaction types, combat packets, skill updates
+- ❓ **Unknown**: Many legacy action types may have been consolidated or removed
+
+## Legacy Protocol (Pre-Update) - OBSOLETE
 
 | ID | Action Name | Data Structure |
 | --- | --- | --- |
@@ -134,13 +159,16 @@ The `GameActionsEnum` is an enum-like structure in the HighSpell client, definin
 
 ### WebSocket Communication
 
-- **Mechanism**: HighSpell uses WebSockets (via `wss://server#.example.com:8888`) to send/receive messages tagged with `GameActionsEnum` IDs. Each message includes:
-  - `type` with the enum ID (e.g., 68 for `UseItemOnItem`).
-  - `data` with an Array payload (e.g., `[0,0,154,0,1,64,0,0,11]`).
-- **Monitoring**: Filter by “WS” in Chrome DevTools’ Network tab for basic inspection.
-- **Changeability**: IDs may shift in major client updates (e.g., new actions added, existing ones reordered). Verify IDs by:
-  - Inspecting the `GameActionsEnum` definition in the client code (via developer tools or deobfuscated scripts).
-  - Monitoring WebSocket traffic to correlate IDs with payloads.
+- **Current**: Uses Socket.IO format `42["packetType", payload]` over WebSockets (`wss://server#.highspell.com:8888`)
+- **Legacy**: Used `GameActionsEnum` IDs with `{type: ID, data: []}` format (now obsolete)
+- **Monitoring**: Use Chrome DevTools Network tab, filter by "WS" for WebSocket inspection
+- **Analysis**: Modern packets are simpler but require understanding the new action-based structure
+
+### Protocol Migration Notes
+- Most legacy packet types (1-117) have been consolidated or removed
+- Player actions unified under packet type "1" with action subtypes
+- Login packet moved from "16" to "15" 
+- State updates centralized under packet type "0"
 
 ## Ethical and Legal Notes
 Per the HighSpell Botting Resources ethos:
