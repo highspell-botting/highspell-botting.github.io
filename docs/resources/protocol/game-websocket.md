@@ -27,10 +27,10 @@ All player actions now use packet type `"1"` with format: `42["1", [ActionType, 
 | "0" | Game State Updates | `[0, [[actionId, payload], ...]]` - Multiple state updates |
 | "15" | Login Response | `[15, [entityId, ...stats, x, y, ...]]` - Initial login data |
 | "18" | Entity Confirmation | `[18, [entityId]]` - Confirms player entity ID |
-| "pm" | Private Message | `[pm, {from, msg, type}]` - Direct messages |
+| "pm" | Private Message | `[pm, {type, from, msg}]` - Direct messages between players |
 
 ### Discovery Status
-- ✅ **Confirmed**: Player movement (10), idle state (16), login (15)  
+- ✅ **Confirmed**: Player movement (10), idle state (16), login (15), private messages (pm)  
 - 🔍 **Investigating**: Interaction types, combat packets, skill updates
 - ❓ **Unknown**: Many legacy action types may have been consolidated or removed
 
