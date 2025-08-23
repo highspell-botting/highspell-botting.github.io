@@ -29,9 +29,27 @@ All player actions now use packet type `"1"` with format: `42["1", [ActionType, 
 | "18" | Entity Confirmation | `[18, [entityId]]` - Confirms player entity ID |
 | "pm" | Private Message | `[pm, {type, from, msg}]` - Direct messages between players |
 
+### Game State Update Actions (within packet type "0")
+| Action ID | Legacy Name | Data Structure | Purpose |
+| --- | --- | --- | --- |
+| 2 | EntityMoveTo | `[2, [entityId, entityType, x, y]]` | All entity movement (players, NPCs, animals) |
+| 3 | PlayerEnteredChunk | `[3, [entityId, ...playerData]]` | Player enters map chunk |
+| 4 | NPCEnteredChunk | `[4, [entityId, npcId, mapLevel, x, y, hp, ...]]` | NPC enters map chunk |
+| 5 | ItemEnteredChunk | `[5, [entityId, itemId, amount, isIOU, mapLevel, x, y]]` | Dropped item appears |
+| 6 | EntityExitedChunk | `[6, [entityId, entityType]]` | Entity exits map chunk |
+| 12 | EntityIdle | `[12, [entityId, entityType]]` | Entity stops moving/activity |
+| 32 | StartedTargeting | `[32, [attackerId, attackerType, targetId, targetType]]` | Combat targeting |
+| 33 | StoppedTargeting | `[33, [entityId, entityType]]` | Stopped combat targeting |
+| 34 | StartedSkilling | `[34, [playerId, resourceId, skill, targetType]]` | Started skilling activity |
+| 35 | StoppedSkilling | `[35, [playerId, skill, exhausted]]` | Stopped skilling activity |
+| 54 | ResourceUpdate | `[54, [resourceId]]` | Resource state change |
+| 84 | PublicMessage | `[84, [entityId, username, message, type]]` | Public chat messages |
+| 85 | ServerTick | `[85, [tickValue]]` | Server tick/timer update |
+| 112 | TimeUpdate | `[112, [gameTime, realTime]]` | In-game time update |
+
 ### Discovery Status
-- ✅ **Confirmed**: Player movement (10), idle state (16), login (15), private messages (pm)  
-- 🔍 **Investigating**: Interaction types, combat packets, skill updates
+- ✅ **Confirmed**: Player movement (10), idle state (16), login (15), private messages (pm), entity movement (2), chunk entry/exit (3,4,5,6), combat (32,33), skilling (34,35), chat (84), time/ticks (85,112)
+- 🔍 **Investigating**: Item interactions, spell casting, trading, banking
 - ❓ **Unknown**: Many legacy action types may have been consolidated or removed
 
 ## Legacy Protocol (Pre-Update) - OBSOLETE
