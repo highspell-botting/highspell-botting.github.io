@@ -51,20 +51,24 @@ World events and other entities use: `42["0", [[actionId, payload], ...]]`
 | 7 | IncreaseCombatExp | `[7, [style, damage]]` | Combat experience gained | ✅ |
 | 8 | ShowDamage | `[8, [attackerId, targetId, damage]]` | Damage dealt in combat | ✅ |
 | 12 | EntityIdle | `[12, [entityId, entityType]]` | Entity stops moving/activity | ✅ |
-| 19 | StartedBanking | `[19, [entityId, bankId]]` | Player opened bank | ✅ |
+| 20 | StartedBanking | `[20, [entityId]]` | Player opened bank | ✅ |
 | 21 | ReceivedBankItems | `[21, [bankItems]]` | Bank inventory data | ✅ |
 | 32 | StartedTargeting | `[32, [attackerId, attackerType, targetId, targetType]]` | Combat targeting | ✅ |
 | 33 | StoppedTargeting | `[33, [entityId, entityType]]` | Stopped combat targeting | ✅ |
-| 34 | StartedSkilling | `[34, [playerId, resourceId, skill, targetType]]` | Started skilling activity | ❓ |
+| 34 | StartedSkilling | `[34, [entityId, resourceId, skill, targetType]]` | Started skilling activity | ✅ |
 | 35 | StoppedSkilling | `[35, [playerId, skill, exhausted]]` | Stopped skilling activity | ✅ |
 | 36 | ResourceExhausted | `[36, [entityId, resourceType]]` | Resource node depleted | ✅ |
+| 37 | EquippedItem | `[37, [entityId, itemId]]` | Player equipped item | ✅ |
 | 44 | TeleportTo | `[44, [entityId, entityType, x, y, mapLevel, type, spellId]]` | Entity teleportation | ✅ |
 | 45 | PlayerDied | `[45, [victimId, killerId]]` | Player death | ✅ |
-| 54 | ResourceUpdate | `[54, [resourceId]]` | Resource state change | ❓ |
+| 54 | ResourceUpdate | `[54, [resourceId]]` | Resource state change | ✅ |
 | 55 | ResourceReplenished | `[55, [resourceId]]` | Resource node respawned | ✅ |
+| 62 | ResourceExhausted | `[62, [resourceId, entityId]]` | Resource depleted by player | ✅ |
+| 63 | CastTeleportSpell | `[63, [spellId]]` | Player cast teleport spell | ✅ |
+| 64 | CastedTeleportSpell | `[64, [entityId, entityType, spellId]]` | Teleport spell completed | ✅ |
 | 68 | ShowDamage | `[68, [attackType, attackerId, targetId, damage, ...]]` | Combat damage details | ❓ |
 | 71 | InGameHourChanged | `[71, [currentHour, ...]]` | Game time update | ✅ |
-| 72 | CastedTeleportSpell | `[72, [casterType, casterId, damage]]` | Spell casting | ❓ |
+| 72 | CastedTeleportSpell | `[72, [casterType, casterId, manaOrDamage]]` | Teleport spell cast | ✅ |
 | 84 | PublicMessage | `[84, [entityId, username, message, type]]` | Public chat messages | ✅ |
 | 85 | ServerTick | `[85, [tickValue]]` | Server tick/timer update | ✅ |
 | 89 | UseItemOnEntity | `[89, [itemSlot, amount, targetType, itemId, ...]]` | Item usage action | ✅ |
