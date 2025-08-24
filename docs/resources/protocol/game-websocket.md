@@ -2,14 +2,85 @@
 
 Overview
 
-The `GameActionsEnum` is an enum-like structure in the HighSpell client, defining 118 action or event types (IDs 0–117). These are used to categorize game events, such as player movements, inventory changes, and UI interactions, primarily for WebSocket communication between the client and server. This document lists each action, its ID, and its purpose, aligning with the HighSpell Botting project’s goal of transparent, educational documentation.
+The `GameActionsEnum` is an enum-like structure in the HighSpell client, defining action or event types for WebSocket communication between client and server. This document covers both the legacy system (pre-update) and the new unified action system discovered through protocol analysis.
 
 ## Important Notes
 
-- **Changeability**: These IDs are specific to the current client version. Major updates may reorder, add, or remove actions, requiring verification in the client code (e.g., via browser developer tools or deobfuscated scripts). Always check the latest `GameActionsEnum` definition after updates.
-- **WebSocket Usage**: Each action’s ID is used as an opcode in WebSocket messages, paired with an array payload (e.g., `["43",[5,0,605]]` for `PerformActionOnEntity`).
+- **Protocol Change**: A major update simplified the packet structure, moving to a unified action-based system under packet type "1" for player actions.
+- **Changeability**: These IDs are specific to the current client version. Major updates may reorder, add, or remove actions.
+- **WebSocket Usage**: Messages use format `42["packetType", payload]` for Socket.IO communication.
 
-## Game Actions
+## Current Protocol (Post-Update)
+
+### Packet Structure Overview
+The new protocol uses a simplified Socket.IO format: `42["packetType", payload]`
+
+There are four main packet types:
+- **Type "1"**: Your direct actions (movement, interactions, going idle)
+- **Type "0"**: Game state broadcasts (other players, NPCs, world events)  
+- **System packets**: Login, entity confirmation, private messages
+- **Control packets**: Connection management, server messages
+
+### Type "1" - Player Action Packets ✅
+Your direct actions use: `42["1", [ActionType, Parameters]]`
+
+| Action Type | Purpose | Data Structure | Status |
+| --- | --- | --- | --- |
+| 10 | Player Movement | `[10, [x, y]]` | ✅ Confirmed |
+| 16 | Idle State | `[16, [entityId]]` | ✅ Confirmed |
+| 42 | Interaction | `[42, [action, target, objectId]]` | ✅ Confirmed |
+| 89 | Use Item | `[89, [itemSlot, amount, targetType, itemId, ...]]` | ✅ Confirmed |
+
+### System Packets
+| Packet Type | Purpose | Data Structure | Status |
+| --- | --- | --- | --- |
+| "15" | Login Response | `[15, [entityId, ...stats, x, y, ...]]` | ✅ Confirmed |
+| "18" | Entity Confirmation | `[18, [entityId]]` | ✅ Confirmed |
+| "pm" | Private Message | `[pm, {type, from, msg}]` | ✅ Confirmed |
+
+### Type "0" - Game State Broadcasts
+World events and other entities use: `42["0", [[actionId, payload], ...]]`
+
+| Action ID | Legacy Name | Data Structure | Purpose | Status |
+| --- | --- | --- | --- | --- |
+| 2 | EntityMoveTo | `[2, [entityId, entityType, x, y]]` | All entity movement | ✅ |
+| 3 | PlayerEnteredChunk | `[3, [entityId, ...playerData]]` | Player enters map chunk | ✅ |
+| 4 | NPCEnteredChunk | `[4, [entityId, npcId, mapLevel, x, y, hp, ...]]` | NPC enters map chunk | ✅ |
+| 5 | ItemEnteredChunk | `[5, [entityId, itemId, amount, isIOU, mapLevel, x, y]]` | Dropped item appears | ✅ |
+| 6 | EntityExitedChunk | `[6, [entityId, entityType]]` | Entity exits map chunk | ✅ |
+| 7 | IncreaseCombatExp | `[7, [style, damage]]` | Combat experience gained | ✅ |
+| 8 | ShowDamage | `[8, [attackerId, targetId, damage]]` | Damage dealt in combat | ✅ |
+| 12 | EntityIdle | `[12, [entityId, entityType]]` | Entity stops moving/activity | ✅ |
+| 20 | StartedBanking | `[20, [entityId]]` | Player opened bank | ✅ |
+| 21 | ReceivedBankItems | `[21, [bankItems]]` | Bank inventory data | ✅ |
+| 32 | StartedTargeting | `[32, [attackerId, attackerType, targetId, targetType]]` | Combat targeting | ✅ |
+| 33 | StoppedTargeting | `[33, [entityId, entityType]]` | Stopped combat targeting | ✅ |
+| 34 | StartedSkilling | `[34, [entityId, resourceId, skill, targetType]]` | Started skilling activity | ✅ |
+| 35 | StoppedSkilling | `[35, [playerId, skill, exhausted]]` | Stopped skilling activity | ✅ |
+| 36 | ResourceExhausted | `[36, [entityId, resourceType]]` | Resource node depleted | ✅ |
+| 37 | EquippedItem | `[37, [entityId, itemId]]` | Player equipped item | ✅ |
+| 44 | TeleportTo | `[44, [entityId, entityType, x, y, mapLevel, type, spellId]]` | Entity teleportation | ✅ |
+| 45 | PlayerDied | `[45, [victimId, killerId]]` | Player death | ✅ |
+| 54 | ResourceUpdate | `[54, [resourceId]]` | Resource state change | ✅ |
+| 55 | ResourceReplenished | `[55, [resourceId]]` | Resource node respawned | ✅ |
+| 62 | ResourceExhausted | `[62, [resourceId, entityId]]` | Resource depleted by player | ✅ |
+| 63 | CastTeleportSpell | `[63, [spellId]]` | Player cast teleport spell | ✅ |
+| 64 | CastedTeleportSpell | `[64, [entityId, entityType, spellId]]` | Teleport spell completed | ✅ |
+| 68 | ShowDamage | `[68, [attackType, attackerId, targetId, damage, ...]]` | Combat damage details | ❓ |
+| 71 | InGameHourChanged | `[71, [currentHour, ...]]` | Game time update | ✅ |
+| 72 | CastedTeleportSpell | `[72, [casterType, casterId, manaOrDamage]]` | Teleport spell cast | ✅ |
+| 84 | PublicMessage | `[84, [entityId, username, message, type]]` | Public chat messages | ✅ |
+| 85 | ServerTick | `[85, [tickValue]]` | Server tick/timer update | ✅ |
+| 89 | UseItemOnEntity | `[89, [itemSlot, amount, targetType, itemId, ...]]` | Item usage action | ✅ |
+| 112 | TimeUpdate | `[112, [gameTime, realTime]]` | In-game time update | ✅ |
+| 113 | Unknown | `[113, [0, 0]]` | Unknown system message | ❓ |
+
+### Discovery Status
+- ✅ **Confirmed**: Player movement (10), idle state (16), login (15), private messages (pm), entity movement (2), chunk entry/exit (3,4,5,6), combat (32,33), skilling (34,35), chat (84), time/ticks (85,112)
+- 🔍 **Investigating**: Item interactions, spell casting, trading, banking
+- ❓ **Unknown**: Many legacy action types may have been consolidated or removed
+
+## Legacy Protocol (Pre-Update) - OBSOLETE
 
 | ID | Action Name | Data Structure |
 | --- | --- | --- |
@@ -134,13 +205,16 @@ The `GameActionsEnum` is an enum-like structure in the HighSpell client, definin
 
 ### WebSocket Communication
 
-- **Mechanism**: HighSpell uses WebSockets (via `wss://server#.example.com:8888`) to send/receive messages tagged with `GameActionsEnum` IDs. Each message includes:
-  - `type` with the enum ID (e.g., 68 for `UseItemOnItem`).
-  - `data` with an Array payload (e.g., `[0,0,154,0,1,64,0,0,11]`).
-- **Monitoring**: Filter by “WS” in Chrome DevTools’ Network tab for basic inspection.
-- **Changeability**: IDs may shift in major client updates (e.g., new actions added, existing ones reordered). Verify IDs by:
-  - Inspecting the `GameActionsEnum` definition in the client code (via developer tools or deobfuscated scripts).
-  - Monitoring WebSocket traffic to correlate IDs with payloads.
+- **Current**: Uses Socket.IO format `42["packetType", payload]` over WebSockets (`wss://server#.highspell.com:8888`)
+- **Legacy**: Used `GameActionsEnum` IDs with `{type: ID, data: []}` format (now obsolete)
+- **Monitoring**: Use Chrome DevTools Network tab, filter by "WS" for WebSocket inspection
+- **Analysis**: Modern packets are simpler but require understanding the new action-based structure
+
+### Protocol Migration Notes
+- Most legacy packet types (1-117) have been consolidated or removed
+- Player actions unified under packet type "1" with action subtypes
+- Login packet moved from "16" to "15" 
+- State updates centralized under packet type "0"
 
 ## Ethical and Legal Notes
 Per the HighSpell Botting Resources ethos:
