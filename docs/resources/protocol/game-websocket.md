@@ -12,40 +12,64 @@ The `GameActionsEnum` is an enum-like structure in the HighSpell client, definin
 
 ## Current Protocol (Post-Update)
 
-### Packet Structure
-All player actions now use packet type `"1"` with format: `42["1", [ActionType, Parameters]]`
+### Packet Structure Overview
+The new protocol uses a simplified Socket.IO format: `42["packetType", payload]`
 
-| Action Type | Purpose | Data Structure |
-| --- | --- | --- |
-| 10 | Player Movement | `[10, [x, y]]` - Move to coordinates |
-| 16 | Idle State | `[16, [entityId]]` - Player entered idle state |
-| 42 | Interaction | `[42, [action, target, objectId]]` - Interact with objects/NPCs |
+There are four main packet types:
+- **Type "1"**: Your direct actions (movement, interactions, going idle)
+- **Type "0"**: Game state broadcasts (other players, NPCs, world events)  
+- **System packets**: Login, entity confirmation, private messages
+- **Control packets**: Connection management, server messages
 
-### Other Packet Types
-| Packet Type | Purpose | Data Structure |
-| --- | --- | --- |
-| "0" | Game State Updates | `[0, [[actionId, payload], ...]]` - Multiple state updates |
-| "15" | Login Response | `[15, [entityId, ...stats, x, y, ...]]` - Initial login data |
-| "18" | Entity Confirmation | `[18, [entityId]]` - Confirms player entity ID |
-| "pm" | Private Message | `[pm, {type, from, msg}]` - Direct messages between players |
+### Type "1" - Player Action Packets ✅
+Your direct actions use: `42["1", [ActionType, Parameters]]`
 
-### Game State Update Actions (within packet type "0")
-| Action ID | Legacy Name | Data Structure | Purpose |
+| Action Type | Purpose | Data Structure | Status |
 | --- | --- | --- | --- |
-| 2 | EntityMoveTo | `[2, [entityId, entityType, x, y]]` | All entity movement (players, NPCs, animals) |
-| 3 | PlayerEnteredChunk | `[3, [entityId, ...playerData]]` | Player enters map chunk |
-| 4 | NPCEnteredChunk | `[4, [entityId, npcId, mapLevel, x, y, hp, ...]]` | NPC enters map chunk |
-| 5 | ItemEnteredChunk | `[5, [entityId, itemId, amount, isIOU, mapLevel, x, y]]` | Dropped item appears |
-| 6 | EntityExitedChunk | `[6, [entityId, entityType]]` | Entity exits map chunk |
-| 12 | EntityIdle | `[12, [entityId, entityType]]` | Entity stops moving/activity |
-| 32 | StartedTargeting | `[32, [attackerId, attackerType, targetId, targetType]]` | Combat targeting |
-| 33 | StoppedTargeting | `[33, [entityId, entityType]]` | Stopped combat targeting |
-| 34 | StartedSkilling | `[34, [playerId, resourceId, skill, targetType]]` | Started skilling activity |
-| 35 | StoppedSkilling | `[35, [playerId, skill, exhausted]]` | Stopped skilling activity |
-| 54 | ResourceUpdate | `[54, [resourceId]]` | Resource state change |
-| 84 | PublicMessage | `[84, [entityId, username, message, type]]` | Public chat messages |
-| 85 | ServerTick | `[85, [tickValue]]` | Server tick/timer update |
-| 112 | TimeUpdate | `[112, [gameTime, realTime]]` | In-game time update |
+| 10 | Player Movement | `[10, [x, y]]` | ✅ Confirmed |
+| 16 | Idle State | `[16, [entityId]]` | ✅ Confirmed |
+| 42 | Interaction | `[42, [action, target, objectId]]` | ✅ Confirmed |
+| 89 | Use Item | `[89, [itemSlot, amount, targetType, itemId, ...]]` | ✅ Confirmed |
+
+### System Packets
+| Packet Type | Purpose | Data Structure | Status |
+| --- | --- | --- | --- |
+| "15" | Login Response | `[15, [entityId, ...stats, x, y, ...]]` | ✅ Confirmed |
+| "18" | Entity Confirmation | `[18, [entityId]]` | ✅ Confirmed |
+| "pm" | Private Message | `[pm, {type, from, msg}]` | ✅ Confirmed |
+
+### Type "0" - Game State Broadcasts
+World events and other entities use: `42["0", [[actionId, payload], ...]]`
+
+| Action ID | Legacy Name | Data Structure | Purpose | Status |
+| --- | --- | --- | --- | --- |
+| 2 | EntityMoveTo | `[2, [entityId, entityType, x, y]]` | All entity movement | ✅ |
+| 3 | PlayerEnteredChunk | `[3, [entityId, ...playerData]]` | Player enters map chunk | ✅ |
+| 4 | NPCEnteredChunk | `[4, [entityId, npcId, mapLevel, x, y, hp, ...]]` | NPC enters map chunk | ✅ |
+| 5 | ItemEnteredChunk | `[5, [entityId, itemId, amount, isIOU, mapLevel, x, y]]` | Dropped item appears | ✅ |
+| 6 | EntityExitedChunk | `[6, [entityId, entityType]]` | Entity exits map chunk | ✅ |
+| 7 | IncreaseCombatExp | `[7, [style, damage]]` | Combat experience gained | ✅ |
+| 8 | ShowDamage | `[8, [attackerId, targetId, damage]]` | Damage dealt in combat | ✅ |
+| 12 | EntityIdle | `[12, [entityId, entityType]]` | Entity stops moving/activity | ✅ |
+| 19 | StartedBanking | `[19, [entityId, bankId]]` | Player opened bank | ✅ |
+| 21 | ReceivedBankItems | `[21, [bankItems]]` | Bank inventory data | ✅ |
+| 32 | StartedTargeting | `[32, [attackerId, attackerType, targetId, targetType]]` | Combat targeting | ✅ |
+| 33 | StoppedTargeting | `[33, [entityId, entityType]]` | Stopped combat targeting | ✅ |
+| 34 | StartedSkilling | `[34, [playerId, resourceId, skill, targetType]]` | Started skilling activity | ❓ |
+| 35 | StoppedSkilling | `[35, [playerId, skill, exhausted]]` | Stopped skilling activity | ✅ |
+| 36 | ResourceExhausted | `[36, [entityId, resourceType]]` | Resource node depleted | ✅ |
+| 44 | TeleportTo | `[44, [entityId, entityType, x, y, mapLevel, type, spellId]]` | Entity teleportation | ✅ |
+| 45 | PlayerDied | `[45, [victimId, killerId]]` | Player death | ✅ |
+| 54 | ResourceUpdate | `[54, [resourceId]]` | Resource state change | ❓ |
+| 55 | ResourceReplenished | `[55, [resourceId]]` | Resource node respawned | ✅ |
+| 68 | ShowDamage | `[68, [attackType, attackerId, targetId, damage, ...]]` | Combat damage details | ❓ |
+| 71 | InGameHourChanged | `[71, [currentHour, ...]]` | Game time update | ✅ |
+| 72 | CastedTeleportSpell | `[72, [casterType, casterId, damage]]` | Spell casting | ❓ |
+| 84 | PublicMessage | `[84, [entityId, username, message, type]]` | Public chat messages | ✅ |
+| 85 | ServerTick | `[85, [tickValue]]` | Server tick/timer update | ✅ |
+| 89 | UseItemOnEntity | `[89, [itemSlot, amount, targetType, itemId, ...]]` | Item usage action | ✅ |
+| 112 | TimeUpdate | `[112, [gameTime, realTime]]` | In-game time update | ✅ |
+| 113 | Unknown | `[113, [0, 0]]` | Unknown system message | ❓ |
 
 ### Discovery Status
 - ✅ **Confirmed**: Player movement (10), idle state (16), login (15), private messages (pm), entity movement (2), chunk entry/exit (3,4,5,6), combat (32,33), skilling (34,35), chat (84), time/ticks (85,112)
